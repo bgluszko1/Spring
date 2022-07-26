@@ -1,7 +1,6 @@
 package com.dolittle.carApp.clientMaintenance;
 
-import com.dolittle.carApp.ClientMaintenance.ClientEntity;
-import com.dolittle.carApp.carMaintenance.model.ClientTO;
+import com.dolittle.carApp.model.ClientTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,17 +24,12 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public void deleteClient(ClientEntity client) {
-        clientDAO.delete(client);
-    }
-
-    @Override
     public void deleteClient(Long id) {
         clientDAO.deleteById(id);
     }
 
-    private ClientTO mapToClientTO(com.dolittle.carApp.ClientMaintenance.ClientEntity clientEntity) {
-        return new ClientTO(clientEntity.getName(), clientEntity.getSurname(),
+    private ClientTO mapToClientTO(ClientEntity clientEntity) {
+        return new ClientTO(clientEntity.getId(), clientEntity.getName(), clientEntity.getSurname(),
                 clientEntity.getResidency(), clientEntity.getDateOfBirth(), clientEntity.getPhoneNumber(),
                 clientEntity.getCreditCardNumber());
     }

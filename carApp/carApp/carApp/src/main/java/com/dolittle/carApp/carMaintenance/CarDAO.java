@@ -8,9 +8,4 @@ import java.util.Optional;
 
 public interface CarDAO extends JpaRepository<CarEntity, Long> {
 
-    @Query("SELECT c FROM CarEntity c WHERE c.model = ?1")
-    Collection<CarEntity> findCarEntityByModel(String model);
-
-    @Query("SELECT c FROM CarEntity c WHERE c.id = ?1")
-    Collection<CarEntity> findCarById(Long id);
 }

@@ -1,10 +1,13 @@
-package com.dolittle.carApp.ClientMaintenance;
+package com.dolittle.carApp.clientMaintenance;
 
 
 import lombok.Getter;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -12,15 +15,16 @@ import java.util.Date;
 public class ClientEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String surname;
     private String residency;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String phoneNumber;
     private String creditCardNumber;
 
-    public ClientEntity(Long id, String name, String surname, String residency, Date dateOfBirth, String phoneNumber, String creditCardNumber) {
+    public ClientEntity(String name, String surname, String residency, LocalDate dateOfBirth, String phoneNumber, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.surname = surname;

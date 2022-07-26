@@ -1,12 +1,10 @@
 package com.dolittle.carApp.carMaintenance;
 
-import com.dolittle.carApp.carMaintenance.model.CarTO;
+import com.dolittle.carApp.model.CarTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class CarController {
@@ -15,10 +13,13 @@ public class CarController {
     @Autowired
     private CarService carService;
     @GetMapping("/carInitialize")
-    public void initializeDatabase() {
+    public void initializeCarDatabase() {
         CarEntity car = new CarEntity("Golf", 2022,
                 "czarny", 15, 1888, 123L);
-        carService.createCar(car);
+        CarEntity car2 = new CarEntity("Volvo", 2022,
+                "czarny", 15, 1888, 123L);
+        carService.addCar(car);
+        carService.addCar(car2);
     }
 
     @PutMapping("cars/update/{id}")
@@ -31,8 +32,16 @@ public class CarController {
         return carService.getAllCars();
     }
 
+    @GetMapping("/cars/models/{model}")
+    public List<CarTO> getCarsByModel(@PathVariable("model") String model) { return carService.getCarsByModel(model);}
+
+    @GetMapping("/cars/employee/{employeeId}")
+    public List<CarTO> getCarsByEmployee(@PathVariable("employeeId") Long employeeId) {
+        return carService.getCarsByEmployee(employeeId);
+    }
+
     @DeleteMapping(path = "/cars/delete/{id}")
-    public void deleteCars(@PathVariable("id") Long id) {
+    public void deleteCar(@PathVariable("id") Long id) {
         carService.deleteCar(id);
     }
 }

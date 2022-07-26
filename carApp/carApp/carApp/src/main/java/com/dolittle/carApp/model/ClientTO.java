@@ -1,16 +1,22 @@
-package com.dolittle.carApp.carMaintenance.model;
+package com.dolittle.carApp.model;
 
-import java.util.Date;
+import lombok.Getter;
 
+import java.time.LocalDate;
+
+@Getter
 public class ClientTO {
+
+    private Long id;
     private String name;
     private String surname;
     private String residency;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String phoneNumber;
     private String creditCardNumber;
 
-    public ClientTO(String name, String surname, String residency, Date dateOfBirth, String phoneNumber, String creditCardNumber) {
+    public ClientTO(Long id, String name, String surname, String residency, LocalDate dateOfBirth, String phoneNumber, String creditCardNumber) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.residency = residency;

@@ -1,47 +1,33 @@
-package com.dolittle.carApp.carMaintenance;
+package com.dolittle.carApp.model;
 
 import com.dolittle.carApp.employeeMaintenance.EmployeeEntity;
 import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
-@Setter
-@Entity
-public class CarEntity {
+public class CarTO {
 
-    @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Long id;
+    private long id;
     private String model;
     private int yearOfProduction;
     private String color;
     private int engineCapacity;
     private int enginePower;
-    private Long mileage;
-    @ManyToMany
+    private long run;
+
     private Collection<EmployeeEntity> employees;
 
 
-    public CarEntity(String model, int yearOfProduction,
-                     String color, int engineCapacity, int enginePower, Long mileage) {
+    public CarTO(long id, String model, int yearOfProduction, String color, int engineCapacity, int enginePower, long run, Collection<EmployeeEntity> employees) {
+        this.id = id;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.color = color;
         this.engineCapacity = engineCapacity;
         this.enginePower = enginePower;
-        this.mileage = mileage;
-    }
-
-    protected CarEntity() {
-
-    }
-
-    public void setEmployees(Collection<EmployeeEntity> employees) {
+        this.run = run;
         this.employees = employees;
     }
 }
-
-
