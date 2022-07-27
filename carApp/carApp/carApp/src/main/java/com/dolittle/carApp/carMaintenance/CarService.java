@@ -9,13 +9,13 @@ public interface CarService {
 
     List<CarTO> getAllCars();
 
-    void addCar(CarEntity car);
+    void addCar(CarTO car);
 
     void deleteCar(Long id);
 
-    void updateCar(Long id, CarEntity car);
+    void updateCar(Long id, CarTO car);
 
-    void assignEmployee(EmployeeEntity employeeId, CarTO car);
+    void assignEmployee(Long employeeId, Long carId);
 
     List<CarTO> getCarsByModel(String model);
     List<CarTO> getCarsByEmployee(Long employeeId);

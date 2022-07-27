@@ -12,18 +12,13 @@ public class CarController {
 
     @Autowired
     private CarService carService;
-    @GetMapping("/carInitialize")
-    public void initializeCarDatabase() {
-        CarEntity car = new CarEntity("Golf", 2022,
-                "czarny", 15, 1888, 123L);
-        CarEntity car2 = new CarEntity("Volvo", 2022,
-                "czarny", 15, 1888, 123L);
-        carService.addCar(car);
-        carService.addCar(car2);
-    }
 
+    @PostMapping("/cars")
+    public void addCar(CarTO car) {
+        carService.addCar(car);
+    }
     @PutMapping("cars/update/{id}")
-    public void updateCar(@PathVariable("id") Long id, CarEntity car) {
+    public void updateCar(@PathVariable("id") Long id, CarTO car) {
         carService.updateCar(id, car);
     }
 
@@ -38,6 +33,10 @@ public class CarController {
     @GetMapping("/cars/employee/{employeeId}")
     public List<CarTO> getCarsByEmployee(@PathVariable("employeeId") Long employeeId) {
         return carService.getCarsByEmployee(employeeId);
+    }
+    @PostMapping("/cars/{carId}/assign/{employeeId}")
+    public void assignEmployee(@PathVariable("carId") Long carId, @PathVariable("employeeId") Long employeeId) {
+        carService.assignEmployee(employeeId, carId);
     }
 
     @DeleteMapping(path = "/cars/delete/{id}")

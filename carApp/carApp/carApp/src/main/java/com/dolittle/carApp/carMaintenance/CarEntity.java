@@ -25,22 +25,18 @@ public class CarEntity {
     private Collection<EmployeeEntity> employees;
 
 
-    public CarEntity(String model, int yearOfProduction,
-                     String color, int engineCapacity, int enginePower, Long mileage) {
+    public CarEntity(Long id, String model, int yearOfProduction, String color, int engineCapacity, int enginePower, Long mileage, Collection<EmployeeEntity> employees) {
+        this.id = id;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.color = color;
         this.engineCapacity = engineCapacity;
         this.enginePower = enginePower;
         this.mileage = mileage;
+        this.employees = employees;
     }
-
     protected CarEntity() {
 
-    }
-
-    public void setEmployees(Collection<EmployeeEntity> employees) {
-        this.employees = employees;
     }
 }
 
